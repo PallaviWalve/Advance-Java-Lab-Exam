@@ -1,0 +1,9 @@
+package com.org.example.controller;
+
+public class StockController {
+
+	public StockController() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

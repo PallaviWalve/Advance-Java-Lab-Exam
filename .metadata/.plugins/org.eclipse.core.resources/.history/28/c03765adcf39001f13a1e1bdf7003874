@@ -1,0 +1,85 @@
+package com.org.example.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.org.example.entity.Stock;
+import com.org.example.repository.stockRepo;
+
+@Service
+public class stockService {
+	
+	@Autowired
+	private stockRepo stockRepoRef;
+	
+	public ResponseEntity<?> addStock(Stock stockref)
+	{
+		try {
+			
+			return new ResponseEntity<> (stockRepoRef.save(stockref),HttpStatus.OK); 
+			
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>("Unable to Add ",HttpStatus.BAD_REQUEST);
+			
+		}
+	}
+	
+	public ResponseEntity<?> getAllStock()
+	{
+		try {
+			
+			return new ResponseEntity<> (stockRepoRef.findAll(),HttpStatus.OK); 
+			
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>("Stock Not Found",HttpStatus.NOT_FOUND);
+			
+		}
+	}
+	
+	public ResponseEntity<?> getStockByName(Stock getStock, String name)
+	{
+		try {
+			
+			return new ResponseEntity<> (stockRepoRef.findBycompanyName(name), HttpStatus.OK); 
+			
+		} catch (Exception e) {
+			
+			return new ResponseEntity<>("Stock Not Found",HttpStatus.NOT_FOUND);
+			
+		}
+	}
+	
+	public ResponseEntity<?> BuyStock(Stock NewStock, Integer id)
+	{
+		try {
+			
+			Stock stock = stockRepoRef.findById(id).orElseThrow();
+			stock.companyName = NewStock.companyName;
+			stock.currentPrice = NewStock.currentPrice;
+			stock.quantity = NewStock.quantity;
+			
+			return new ResponseEntity<> (stockRepoRef.save(NewStock),HttpStatus.OK); 
+		
+			
+		} catch (Exception e) {
+			return new ResponseEntity<>("Stock Not Found",HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	public ResponseEntity<?> SellStock(Integer id)
+	{
+		try {
+			Stock stock = stockRepoRef.findById(id).orElseThrow();
+			stockRepoRef.delete(stock);
+			return new ResponseEntity<>("Stock Selled", HttpStatus.OK);
+			
+		} catch (Exception e) {
+			return new ResponseEntity<> ("Stock Not Found",HttpStatus.NOT_FOUND);
+		}
+	}
+
+}

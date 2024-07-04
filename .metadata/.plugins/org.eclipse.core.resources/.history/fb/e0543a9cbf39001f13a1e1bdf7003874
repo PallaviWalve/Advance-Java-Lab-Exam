@@ -1,0 +1,15 @@
+package com.org.example.entity;
+
+public class Stock {
+
+	private int stockId;
+	private String companyName;
+	private float currentPrice;
+	private int quantity;
+	
+	
+	public Stock() {
+		
+	}
+
+}

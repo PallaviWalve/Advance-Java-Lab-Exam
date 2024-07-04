@@ -1,0 +1,73 @@
+package com.org.example.entity;
+
+public class Stock {
+
+	private int stockId;
+	private String companyName;
+	private float currentPrice;
+	private int quantity;
+	
+	
+	public Stock() {
+		
+	}
+
+
+	public Stock(int stockId, String companyName, float currentPrice, int quantity) {
+		super();
+		this.stockId = stockId;
+		this.companyName = companyName;
+		this.currentPrice = currentPrice;
+		this.quantity = quantity;
+	}
+
+
+	public int getStockId() {
+		return stockId;
+	}
+
+
+	public void setStockId(int stockId) {
+		this.stockId = stockId;
+	}
+
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+
+	public float getCurrentPrice() {
+		return currentPrice;
+	}
+
+
+	public void setCurrentPrice(float currentPrice) {
+		this.currentPrice = currentPrice;
+	}
+
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Stock [stockId=" + stockId + ", companyName=" + companyName + ", currentPrice=" + currentPrice
+				+ ", quantity=" + quantity + "]";
+	}
+	
+	
+
+}

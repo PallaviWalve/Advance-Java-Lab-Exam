@@ -1,0 +1,5 @@
+package com.org.example.repository;
+
+public interface stockRepo {
+
+}
